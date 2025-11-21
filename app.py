@@ -3,7 +3,7 @@ import openai
 import re
 
 app = Flask(__name__)
-openai.api_key = "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"
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def preprocess_question(question):
     question = question.lower()
@@ -33,4 +33,10 @@ def home():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+
+
+
 
